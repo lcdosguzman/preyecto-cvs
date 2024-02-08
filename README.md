@@ -1,2 +1,2 @@
-# preyecto-cvs
+# proyecto-cvs
 Web data de reclutamiento
