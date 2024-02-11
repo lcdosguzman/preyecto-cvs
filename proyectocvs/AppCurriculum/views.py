@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from AppCurriculum.models import *
+from AppCurriculum.forms import ExperienciaFormulario
 
 # Create your views here.
 def home(request):
@@ -10,4 +11,19 @@ def home(request):
 
 def experiencia(request):
     experiencias = ExperienciaLaboral.objects.all()
-    return render(request,"AppCurriculum/experiencia.html",{"experiencias":experiencias})
+    if request.method == 'POST':
+        miFormulario = ExperienciaFormulario(request.POST)
+        print(miFormulario)
+        if miFormulario.is_valid:
+            if 'periodo_inicio'in request.POST and 'periodo_fin'in request.POST:
+                informacion = miFormulario.cleaned_data
+                exp = ExperienciaLaboral (cargo=informacion['cargo'],empresa=informacion['empresa'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'])
+                exp.save()
+                miFormulario = ExperienciaFormulario()
+                return render(request,"AppCurriculum/experiencia.html",{"experiencias":experiencias,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
+            else:
+                return render(request,"AppCurriculum/experiencia.html",{"experiencias":experiencias,"miFormulario":miFormulario,"resp":"Datos No Gurdados"})
+    else:
+        miFormulario = ExperienciaFormulario()
+
+    return render(request,"AppCurriculum/experiencia.html",{"experiencias":experiencias,"miFormulario":miFormulario})
