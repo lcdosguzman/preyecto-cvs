@@ -33,3 +33,15 @@ class EstudioFormulario(forms.Form):
             'fecha_fin',
             Submit('submit', 'Guardar', css_class='btn btn-primary')
         )
+
+class IdiomaFormulario(forms.Form):
+    idioma = forms.CharField(label='Idioma', max_length=100)
+    nivel = forms.CharField(label='Nivel', max_length=100)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            'idioma',
+            'nivel',
+            Submit('submit', 'Guardar', css_class='btn btn-primary')
+        )

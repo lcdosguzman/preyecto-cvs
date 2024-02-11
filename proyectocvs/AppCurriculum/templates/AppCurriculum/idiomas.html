@@ -1,0 +1,60 @@
+{% extends "AppCurriculum/template.html" %}
+
+{% load static %}
+
+{% block datosDinamicos %}
+<div class="container px-5 my-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Administración de Idiomas</span></h1>
+    </div>
+    <div class="row gx-5 justify-content-center">
+        <div class="col-lg-11 col-xl-9 col-xxl-8">
+              <!-- Form section-->
+              <section style="margin-bottom: 50px;">  
+                {% if miFormulario.errors %}
+                <div class="alert alert-danger mt-3">
+                    <strong>Error en el formulario:</strong>
+                    {{ miFormulario.non_field_errors }}
+                    {{ miFormulario.cargo.errors }}
+                    {{ miFormulario.empresa.errors }}
+                    {{ miFormulario.fecha_inicio.errors }}
+                    {{ miFormulario.fecha_fin.errors }}
+                </div>
+            {% endif %}
+
+              <form action="" method="POST">{% csrf_token %}
+                <table>
+                    <div class="mb-3">
+                    {{ miFormulario.as_table}}
+                    </div>
+                </table>
+                <input class="btn btn-primary" type="submit" value="Guardar">
+              </form>
+              {{resp}}
+            </section>
+               <!-- Experience Section-->
+            <section>
+                <table class="table caption-top">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h2 class="text-primary fw-bolder mb-0">Idiomas</h2>
+                    </div>
+                    <thead>
+                      <tr>
+                        <th scope="col">Idioma</th>
+                        <th scope="col">Nivel</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for info in idiomas %}
+                      <tr>
+                        <td>{{info.idioma}}</td>
+                        <td>{{info.nivel}}</td>
+                      </tr>
+                      {% endfor%}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

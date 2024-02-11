@@ -45,3 +45,20 @@ def estudio(request):
         miFormulario = EstudioFormulario()
 
     return render(request,"AppCurriculum/educacion.html",{"estudios":estudios,"miFormulario":miFormulario})
+
+
+def idiomas(request):
+    idiomas = Idiomas.objects.all()
+    if request.method == 'POST':
+        miFormulario = IdiomaFormulario(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            exp = Idiomas(idioma=informacion['idioma'],nivel=informacion['nivel'])
+            exp.save()
+            miFormulario = IdiomaFormulario()
+            return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
+    else:
+        miFormulario = IdiomaFormulario()
+
+    return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario})
+
