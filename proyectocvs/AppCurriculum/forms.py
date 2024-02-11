@@ -17,3 +17,19 @@ class ExperienciaFormulario(forms.Form):
             'fecha_fin',
             Submit('submit', 'Guardar', css_class='btn btn-primary')
         )
+
+class EstudioFormulario(forms.Form):
+    institucion = forms.CharField(label='Institucion', max_length=100)
+    titulo = forms.CharField(label='Titulo', max_length=100)
+    periodo_inicio = forms.DateField(label='Fecha Inicio')
+    periodo_fin = forms.DateField(label='Fecha Fin')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            'institucion',
+            'titulo',
+            'fecha_inicio',
+            'fecha_fin',
+            Submit('submit', 'Guardar', css_class='btn btn-primary')
+        )
