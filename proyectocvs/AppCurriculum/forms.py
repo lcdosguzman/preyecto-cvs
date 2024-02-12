@@ -5,6 +5,8 @@ from crispy_forms.layout import Layout, Submit
 class ExperienciaFormulario(forms.Form):
     cargo = forms.CharField(label='Cargo', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     empresa = forms.CharField(label='Empresa', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(label='Description', max_length=1000,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    pais = forms.CharField(label='Pais', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     periodo_inicio = forms.DateField(label='Fecha Inicio',widget=forms.TextInput(attrs={'class': 'form-control'}))
     periodo_fin = forms.DateField(label='Fecha Fin',widget=forms.TextInput(attrs={'class': 'form-control'}))
     def __init__(self, *args, **kwargs):
@@ -13,6 +15,8 @@ class ExperienciaFormulario(forms.Form):
         self.helper.layout = Layout(
             'cargo',
             'empresa',
+            'description',
+            'pais',
             'fecha_inicio',
             'fecha_fin',
             Submit('submit', 'Guardar', css_class='btn btn-primary')

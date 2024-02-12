@@ -32,6 +32,14 @@
                     {{ miFormulario.empresa }}
                 </div>
                 <div class="mb-3">
+                    <label for="{{ miFormulario.description.id_for_label }}" class="form-label">{{ miFormulario.description.label }}</label>
+                    {{ miFormulario.description }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ miFormulario.pais.id_for_label }}" class="form-label">{{ miFormulario.pais.label }}</label>
+                    {{ miFormulario.pais }}
+                </div>
+                <div class="mb-3">
                     <label for="{{ miFormulario.periodo_inicio.id_for_label }}" class="form-label">{{ miFormulario.periodo_inicio.label }}</label>
                     {{ miFormulario.periodo_inicio }}
                 </div>
@@ -56,6 +64,7 @@
                         <th scope="col">Cargo</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Pais</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Fecha Inicio</th>
                         <th scope="col">Fecha Fin</th>
                       </tr>
@@ -65,7 +74,8 @@
                       <tr>
                         <td>{{exp.cargo}}</td>
                         <td>{{exp.empresa}}</td>
-                        <td>Venezuela</td>
+                        <td>{{exp.pais}}</td>
+                        <td>{{exp.description}}</td>
                         <td>{{exp.periodo_inicio}}</td>
                         <td>{{exp.periodo_fin}}</td>
                       </tr>

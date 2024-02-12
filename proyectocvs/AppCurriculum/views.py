@@ -17,7 +17,7 @@ def experiencia(request):
         if miFormulario.is_valid():
             if 'periodo_inicio'in request.POST and 'periodo_fin'in request.POST:
                 informacion = miFormulario.cleaned_data
-                exp = ExperienciaLaboral (cargo=informacion['cargo'],empresa=informacion['empresa'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'])
+                exp = ExperienciaLaboral (cargo=informacion['cargo'],empresa=informacion['empresa'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'],description=informacion['description'],pais=informacion['pais'])
                 exp.save()
                 miFormulario = ExperienciaFormulario()
                 return render(request,"AppCurriculum/experiencia.html",{"experiencias":experiencias,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})

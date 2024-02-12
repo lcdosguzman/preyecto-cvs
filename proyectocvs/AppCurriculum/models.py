@@ -21,6 +21,8 @@ class ExperienciaLaboral(models.Model):
     empresa = models.CharField(max_length=100)
     periodo_inicio = models.DateField()
     periodo_fin = models.DateField(null=True, blank=True) 
+    description = models.CharField(max_length=1000)
+    pais = models.CharField(max_length=50)
 
     def __str__(self):
         return f'{self.cargo} en {self.empresa}'
