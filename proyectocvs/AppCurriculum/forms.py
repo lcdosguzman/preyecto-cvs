@@ -35,8 +35,8 @@ class EstudioFormulario(forms.Form):
         )
 
 class IdiomaFormulario(forms.Form):
-    idioma = forms.CharField(label='Idioma', max_length=100)
-    nivel = forms.CharField(label='Nivel', max_length=100)
+    idioma = forms.CharField(label='Idioma', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nivel = forms.CharField(label='Nivel', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)

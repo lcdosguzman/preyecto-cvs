@@ -21,13 +21,17 @@
                     {{ miFormulario.fecha_fin.errors }}
                 </div>
             {% endif %}
+              <form action="" method="POST" class="mb-3">{% csrf_token %}
 
-              <form action="" method="POST">{% csrf_token %}
-                <table>
-                    <div class="mb-3">
-                    {{ miFormulario.as_table}}
-                    </div>
-                </table>
+                <div class="mb-3">
+                  <label for="{{ miFormulario.idioma.id_for_label }}" class="form-label">{{ miFormulario.idioma.label }}</label>
+                  {{ miFormulario.idioma }}
+              </div>
+              <div class="mb-3">
+                  <label for="{{ miFormulario.nivel.id_for_label }}" class="form-label">{{ miFormulario.nivel.label }}</label>
+                  {{ miFormulario.nivel }}
+              </div>
+
                 <input class="btn btn-primary" type="submit" value="Guardar">
               </form>
               {{resp}}
