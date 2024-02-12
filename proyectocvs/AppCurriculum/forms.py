@@ -25,6 +25,8 @@ class ExperienciaFormulario(forms.Form):
 class EstudioFormulario(forms.Form):
     institucion = forms.CharField(label='Institucion', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     titulo = forms.CharField(label='Titulo', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    description = forms.CharField(label='Description', max_length=1000,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    pais = forms.CharField(label='Pais', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     periodo_inicio = forms.DateField(label='Fecha Inicio',widget=forms.TextInput(attrs={'class': 'form-control'}))
     periodo_fin = forms.DateField(label='Fecha Fin',widget=forms.TextInput(attrs={'class': 'form-control'}))
     def __init__(self, *args, **kwargs):
@@ -33,6 +35,8 @@ class EstudioFormulario(forms.Form):
         self.helper.layout = Layout(
             'institucion',
             'titulo',
+            'description',
+            'pais',
             'fecha_inicio',
             'fecha_fin',
             Submit('submit', 'Guardar', css_class='btn btn-primary')

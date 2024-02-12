@@ -7,7 +7,8 @@ from AppCurriculum.forms import *
 def home(request):
     experiencias = ExperienciaLaboral.objects.all()
     estudios = Educacion.objects.all()
-    return render(request,"AppCurriculum/home.html",{"experiencias":experiencias,"estudios":estudios})
+    idiomas = Idiomas.objects.all()
+    return render(request,"AppCurriculum/home.html",{"experiencias":experiencias,"estudios":estudios,"idiomas":idiomas})
 
 def experiencia(request):
     experiencias = ExperienciaLaboral.objects.all()
@@ -35,7 +36,7 @@ def estudio(request):
         if miFormulario.is_valid():
             if 'periodo_inicio'in request.POST and 'periodo_fin'in request.POST:
                 informacion = miFormulario.cleaned_data
-                exp = Educacion(institucion=informacion['institucion'],titulo=informacion['titulo'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'])
+                exp = Educacion(institucion=informacion['institucion'],titulo=informacion['titulo'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'],description=informacion['description'],pais=informacion['pais'])
                 exp.save()
                 miFormulario = EstudioFormulario()
                 return render(request,"AppCurriculum/educacion.html",{"estudios":estudios,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})

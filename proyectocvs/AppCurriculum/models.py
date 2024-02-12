@@ -12,6 +12,13 @@ class Usuario(models.Model):
 class DataUsuario(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
+    bio = models.CharField(max_length=1000)
+    telefono = models.CharField(max_length=20)
+    url_twitter = models.CharField(max_length=30)
+    url_facebook = models.CharField(max_length=30)
+    url_github= models.CharField(max_length=30)
+    url_youtube = models.CharField(max_length=30)
+    url_linkedin = models.CharField(max_length=30)
 
     def __str__(self):
         return f'{self.nombre} {self.apellido}'
@@ -30,15 +37,17 @@ class ExperienciaLaboral(models.Model):
 class Educacion(models.Model):
     institucion = models.CharField(max_length=100)
     titulo = models.CharField(max_length=100)
+    description = models.CharField(max_length=1000)
+    pais = models.CharField(max_length=50)
     periodo_inicio = models.DateField()
-    periodo_fin = models.DateField(null=True, blank=True)  # Puede ser nulo si aún está estudiando
+    periodo_fin = models.DateField(null=True, blank=True) 
 
     def __str__(self):
         return f'{self.titulo} en {self.institucion}'
 
 class Idiomas(models.Model):
     idioma = models.CharField(max_length=50)
-    nivel = models.CharField(max_length=20)  # Puede ser un campo de selección (Básico, Intermedio, Avanzado, etc.)
+    nivel = models.CharField(max_length=20) 
 
     def __str__(self):
         return f'{self.idioma} - Nivel: {self.nivel}'
