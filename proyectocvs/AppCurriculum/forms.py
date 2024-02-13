@@ -7,8 +7,8 @@ class ExperienciaFormulario(forms.Form):
     empresa = forms.CharField(label='Empresa', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(label='Description', max_length=1000,widget=forms.TextInput(attrs={'class': 'form-control'}))
     pais = forms.CharField(label='Pais', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    periodo_inicio = forms.DateField(label='Fecha Inicio',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    periodo_fin = forms.DateField(label='Fecha Fin',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    periodo_inicio = forms.IntegerField(label='Fecha Inicio',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    periodo_fin = forms.IntegerField(label='Fecha Fin',widget=forms.TextInput(attrs={'class': 'form-control'}))
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
@@ -27,8 +27,8 @@ class EstudioFormulario(forms.Form):
     titulo = forms.CharField(label='Titulo', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(label='Description', max_length=1000,widget=forms.TextInput(attrs={'class': 'form-control'}))
     pais = forms.CharField(label='Pais', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    periodo_inicio = forms.DateField(label='Fecha Inicio',widget=forms.TextInput(attrs={'class': 'form-control'}))
-    periodo_fin = forms.DateField(label='Fecha Fin',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    periodo_inicio = forms.IntegerField(label='Fecha Inicio',widget=forms.TextInput(attrs={'class': 'form-control'}))
+    periodo_fin = forms.IntegerField(label='Fecha Fin',widget=forms.TextInput(attrs={'class': 'form-control'}))
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper(self)
@@ -77,5 +77,15 @@ class DataUsuarioFormulario(forms.Form):
             'url_github',
             'url_youtube',
             'url_linkedin',
+            Submit('submit', 'Guardar', css_class='btn btn-primary')
+        )
+
+class SkillFormulario(forms.Form):
+    aptitud = forms.CharField(label='Aptitud', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            'aptitud',
             Submit('submit', 'Guardar', css_class='btn btn-primary')
         )

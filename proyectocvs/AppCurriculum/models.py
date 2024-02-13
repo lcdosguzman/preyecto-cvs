@@ -26,8 +26,8 @@ class DataUsuario(models.Model):
 class ExperienciaLaboral(models.Model):
     cargo = models.CharField(max_length=100)
     empresa = models.CharField(max_length=100)
-    periodo_inicio = models.DateField()
-    periodo_fin = models.DateField(null=True, blank=True) 
+    periodo_inicio = models.IntegerField()
+    periodo_fin = models.IntegerField(null=True, blank=True) 
     description = models.CharField(max_length=1000)
     pais = models.CharField(max_length=50)
 
@@ -39,8 +39,8 @@ class Educacion(models.Model):
     titulo = models.CharField(max_length=100)
     description = models.CharField(max_length=1000)
     pais = models.CharField(max_length=50)
-    periodo_inicio = models.DateField()
-    periodo_fin = models.DateField(null=True, blank=True) 
+    periodo_inicio = models.IntegerField()
+    periodo_fin = models.IntegerField(null=True, blank=True) 
 
     def __str__(self):
         return f'{self.titulo} en {self.institucion}'
@@ -51,3 +51,9 @@ class Idiomas(models.Model):
 
     def __str__(self):
         return f'{self.idioma} - Nivel: {self.nivel}'
+    
+class Skills(models.Model):
+    aptitud = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.aptitud}'

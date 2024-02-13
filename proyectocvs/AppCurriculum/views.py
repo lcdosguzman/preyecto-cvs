@@ -8,7 +8,8 @@ def home(request):
     estudios = Educacion.objects.all()
     idiomas = Idiomas.objects.all()
     perfil=DataUsuario.objects.latest('id')
-    return render(request,"AppCurriculum/home.html",{"experiencias":experiencias,"estudios":estudios,"idiomas":idiomas,"perfil":perfil})
+    skills = Skills.objects.all()
+    return render(request,"AppCurriculum/home.html",{"experiencias":experiencias,"estudios":estudios,"idiomas":idiomas,"perfil":perfil,"skills":skills})
 
 def experiencia(request):
     experiencias = ExperienciaLaboral.objects.all()
@@ -16,7 +17,7 @@ def experiencia(request):
         miFormulario = ExperienciaFormulario(request.POST)
         print(miFormulario)
         if miFormulario.is_valid():
-            if 'periodo_inicio'in request.POST and 'periodo_fin'in request.POST:
+            if 'periodo_inicio'in request.POST:
                 informacion = miFormulario.cleaned_data
                 exp = ExperienciaLaboral (cargo=informacion['cargo'],empresa=informacion['empresa'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'],description=informacion['description'],pais=informacion['pais'])
                 exp.save()
@@ -33,15 +34,16 @@ def estudio(request):
     estudios = Educacion.objects.all()
     if request.method == 'POST':
         miFormulario = EstudioFormulario(request.POST)
+        print(miFormulario)
         if miFormulario.is_valid():
-            if 'periodo_inicio'in request.POST and 'periodo_fin'in request.POST:
+            
                 informacion = miFormulario.cleaned_data
-                exp = Educacion(institucion=informacion['institucion'],titulo=informacion['titulo'],periodo_fin=informacion['periodo_fin'],periodo_inicio=informacion['periodo_inicio'],description=informacion['description'],pais=informacion['pais'])
+                exp = Educacion(institucion=informacion['institucion'],titulo=informacion['titulo'],periodo_fin=int(informacion['periodo_fin']),periodo_inicio=int(informacion['periodo_inicio']),description=informacion['description'],pais=informacion['pais'])
                 exp.save()
                 miFormulario = EstudioFormulario()
                 return render(request,"AppCurriculum/educacion.html",{"estudios":estudios,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
-            else:
-                return render(request,"AppCurriculum/educacion.html",{"estudios":estudios,"miFormulario":miFormulario,"resp":"Datos No Gurdados"})
+        else:
+          return render(request,"AppCurriculum/educacion.html",{"estudios":estudios,"miFormulario":miFormulario,"resp":"Datos NO guardados Correctamente"})
     else:
         miFormulario = EstudioFormulario()
 
@@ -79,3 +81,21 @@ def datos_usuario(request):
         miFormulario = DataUsuarioFormulario()
 
     return render(request,"AppCurriculum/perfil.html",{"info":data,"miFormulario":miFormulario})
+
+
+def skills(request):
+    skills = Skills.objects.all()
+    if request.method == 'POST':
+        miFormulario = SkillFormulario(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            exp = Skills(aptitud=informacion['aptitud'])
+            exp.save()
+            miFormulario = SkillFormulario()
+            return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
+        else:
+            return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"Datos No guardados Correctamente"})
+    else:
+        miFormulario = SkillFormulario()
+
+    return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario})
