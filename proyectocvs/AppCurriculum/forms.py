@@ -53,3 +53,29 @@ class IdiomaFormulario(forms.Form):
             'nivel',
             Submit('submit', 'Guardar', css_class='btn btn-primary')
         )
+
+class DataUsuarioFormulario(forms.Form):
+    nombre = forms.CharField(label='Nombre', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    apellido = forms.CharField(label='Apellido', max_length=100,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    bio = forms.CharField(label='Biografía', max_length=1000,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telefono = forms.CharField(label='Teléfono', max_length=20,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    url_facebook = forms.CharField(label='URL facebook', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    url_twitter = forms.CharField(label='URL twitter', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    url_github = forms.CharField(label='URL github', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    url_youtube = forms.CharField(label='URL youtube', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    url_linkedin = forms.CharField(label='URL linkedin', max_length=30,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.layout = Layout(
+            'nombre',
+            'apellido',
+            'biografía',
+            'telefono',
+            'url_facebook',
+            'url_twitter',
+            'url_github',
+            'url_youtube',
+            'url_linkedin',
+            Submit('submit', 'Guardar', css_class='btn btn-primary')
+        )

@@ -3,12 +3,12 @@ from django.http import HttpResponse
 from AppCurriculum.models import *
 from AppCurriculum.forms import *
 
-# Create your views here.
 def home(request):
     experiencias = ExperienciaLaboral.objects.all()
     estudios = Educacion.objects.all()
     idiomas = Idiomas.objects.all()
-    return render(request,"AppCurriculum/home.html",{"experiencias":experiencias,"estudios":estudios,"idiomas":idiomas})
+    perfil=DataUsuario.objects.latest('id')
+    return render(request,"AppCurriculum/home.html",{"experiencias":experiencias,"estudios":estudios,"idiomas":idiomas,"perfil":perfil})
 
 def experiencia(request):
     experiencias = ExperienciaLaboral.objects.all()
@@ -47,7 +47,6 @@ def estudio(request):
 
     return render(request,"AppCurriculum/educacion.html",{"estudios":estudios,"miFormulario":miFormulario})
 
-
 def idiomas(request):
     idiomas = Idiomas.objects.all()
     if request.method == 'POST':
@@ -63,3 +62,20 @@ def idiomas(request):
 
     return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario})
 
+def datos_usuario(request):
+    data=DataUsuario.objects.latest('id')
+    if request.method == 'POST':
+        miFormulario = DataUsuarioFormulario(request.POST)
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            exp = DataUsuarioFormulario(nombre=informacion['nombre'],apellido=informacion['apellido'],
+                              bio=informacion['bio'],telefono=informacion['telefono'],url_twitter=informacion['url_twitter'],
+                              url_facebook=informacion['url_facebook'],url_github=informacion['url_github'],
+                              url_youtube=informacion['url_youtube'],url_linkedin=informacion['url_linkedin'])
+            exp.save()
+            miFormulario = DataUsuarioFormulario()
+            return render(request,"AppCurriculum/perfil.html",{"data":data,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
+    else:
+        miFormulario = DataUsuarioFormulario()
+
+    return render(request,"AppCurriculum/perfil.html",{"info":data,"miFormulario":miFormulario})
