@@ -58,11 +58,19 @@ def idiomas(request):
             exp = Idiomas(idioma=informacion['idioma'],nivel=informacion['nivel'])
             exp.save()
             miFormulario = IdiomaFormulario()
-            return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
+            return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente","respSearch":""})
     else:
         miFormulario = IdiomaFormulario()
 
-    return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario})
+    if 'text_search' in request.GET:
+        search = request.GET['text_search']
+        idiomaSearch = Idiomas.objects.filter(idioma__icontains=search)
+        respSearch = "No se encontraron resultados para " + search
+        if idiomaSearch.exists():
+            respSearch = "Resultados para " + search
+        return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario,"idiomaSearch":idiomaSearch,"resp":"","respSearch":respSearch})
+
+    return render(request,"AppCurriculum/idiomas.html",{"idiomas":idiomas,"miFormulario":miFormulario,"resp":"","respSearch":""})
 
 def datos_usuario(request):
     data=DataUsuario.objects.latest('id')
@@ -85,6 +93,8 @@ def datos_usuario(request):
 
 def skills(request):
     skills = Skills.objects.all()
+
+ #manejo del post para agregar 
     if request.method == 'POST':
         miFormulario = SkillFormulario(request.POST)
         if miFormulario.is_valid():
@@ -92,10 +102,20 @@ def skills(request):
             exp = Skills(aptitud=informacion['aptitud'])
             exp.save()
             miFormulario = SkillFormulario()
-            return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente"})
+            return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"Datos guardados Correctamente","respSearch":""})
         else:
-            return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"Datos No guardados Correctamente"})
+            return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"Datos No guardados Correctamente","respSearch":""})
     else:
         miFormulario = SkillFormulario()
 
-    return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario})
+#manejo de busquedas 
+    if 'skill_search' in request.GET:
+        search = request.GET['skill_search']
+        skillsSearch = Skills.objects.filter(aptitud__icontains=search)
+        respSearch = "No se encontraron resultados para " + search
+        if skillsSearch.exists():
+            respSearch = "Resultados para " + search
+        return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"skillsSearch":skillsSearch,"resp":"","respSearch":respSearch})
+
+
+    return render(request,"AppCurriculum/skills.html",{"skills":skills,"miFormulario":miFormulario,"resp":"","respSearch":""})
