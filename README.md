@@ -9,9 +9,9 @@ En la entrega final se solicitaran la totalidad de los datos y se harán más va
 ## Puntos importantes para la revisión
 - **Url Principal:** http://127.0.0.1:8000/AppCurriculum/
 - **Menú Principal** El menú principal te permitirá navegar por la hoja de vida.
-![Menu Principal](./menuprincipal.png)
+![Menu Principal](menuprincipal.png)
 - **Menú de Administracion** Este menú se encuentra en la parete inferior de la página y estan los enlaces para la administración de los modelos.
-![Menu Administración](./menuadministracion.png)
+![Menu Administración](menuadministracion.png)
 
 ## Características Principales
 
