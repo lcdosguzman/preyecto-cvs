@@ -13,7 +13,7 @@ En la entrega final se solicitaran la totalidad de los datos y se harán más va
 
 ![Menu Principal](menuprincipal.png)
 
-- **Menú de Administracion** Este menú se encuentra en la parete inferior de la página y estan los enlaces para la administración de los modelos.
+- **Menú de Administracion** Este menú se encuentra en la parte inferior de la página y estan los enlaces para la administración de los modelos.
 
 ![Menu Administración](menuadministracion.png)
 
