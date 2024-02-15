@@ -28,11 +28,11 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                             <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Experiencia' %}">Experiencia</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Educacion' %}">Educacion</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Idiomas' %}">Idiomas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Perfil' %}">Perfil</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'Skills' %}">Skills</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}#acercade">Yo</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}#experiencia">Experiencia</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}#educacion">Educacion</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}#idiomas">Idiomas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}#skills">Habilidades</a></li>
                         </ul>
                     </div>
                 </div>
@@ -41,18 +41,22 @@
             
             {% endblock %}
         </main>
-        
         <!-- Footer-->
         <footer class="bg-white py-4 mt-auto">
             <div class="container px-5">
                 <div class="row align-items-center justify-content-between flex-column flex-sm-row">
                     <div class="col-auto"><div class="small m-0">Copyright &copy; Simon Guzman 2024</div></div>
                     <div class="col-auto">
-                        <a class="small" href="#!">Privacy</a>
+                        <a class="small" href="{% url 'Perfil' %}">Perfil</a>
                         <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Terms</a>
+                        <a class="small" href="{% url 'Experiencia' %}">Experiencia</a>
                         <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Contact</a>
+                        <a class="small" href="{% url 'Educacion' %}">Educacion</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="{% url 'Idiomas' %}">Idiomas</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="{% url 'Skills' %}">Skills</a>
+                        
                     </div>
                 </div>
             </div>

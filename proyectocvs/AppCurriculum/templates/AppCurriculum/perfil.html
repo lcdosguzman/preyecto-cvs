@@ -14,11 +14,15 @@
                 {% if miFormulario.errors %}
                 <div class="alert alert-danger mt-3">
                     <strong>Error en el formulario:</strong>
-                    {{ miFormulario.non_field_errors }}
-                    {{ miFormulario.cargo.errors }}
-                    {{ miFormulario.empresa.errors }}
-                    {{ miFormulario.fecha_inicio.errors }}
-                    {{ miFormulario.fecha_fin.errors }}
+                    {{ miFormulario.nombre.errors }}
+                    {{ miFormulario.apellido.errors }}
+                    {{ miFormulario.bio.errors }}
+                    {{ miFormulario.telefono.errors }}
+                    {{ miFormulario.url_facebook.errors }}
+                    {{ miFormulario.url_twitter.errors }}
+                    {{ miFormulario.url_github.errors }}
+                    {{ miFormulario.url_linkedin.errors }}
+                    {{ miFormulario.url_youtube.errors }}
                 </div>
             {% endif %}
 

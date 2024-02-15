@@ -46,7 +46,7 @@
              <!-- section search-->
              <div class="card" style="margin-top: 20px;">
               <div class="card-header">
-                Buscar Skil
+                Buscar Skil (por aptitud)
               </div>
               <div class="card-body">
                 <section style="margin-bottom: 50px;">  
@@ -66,6 +66,7 @@
                   {% endif %}
                   <div class="card-body">
                     <section>
+                      {% if skillsSearch %}
                       <table class="table caption-top">
                           <thead>
                             <tr>
@@ -80,11 +81,11 @@
                             {% endfor%}
                           </tbody>
                       </table>
+                      {% endif %}
                   </section>
                 </section>
               </div>
-            </div>
-              
+              </div>
               <!-- section list-->
               <div class="card" style="margin-top: 20px;">
                 <div class="card-header">

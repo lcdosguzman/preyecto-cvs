@@ -40,14 +40,18 @@
                     <input class="btn btn-primary" type="submit" value="Guardar nuevo idioma">
                   </div>
                   </form>
-                  {{resp}}
+                  {% if resp %}
+                  <div class="alert alert-info" role="alert">
+                    {{resp}}
+                  </div>
+                  {% endif %}
                 </section>
                 </div>
               </div>
               <!-- section search-->
              <div class="card" style="margin-top: 20px;">
               <div class="card-header">
-                Buscar Idioma
+                Buscar Idioma (por idioma)
               </div>
               <div class="card-body">
                 <section style="margin-bottom: 50px;">  
